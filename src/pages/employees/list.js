@@ -1,7 +1,20 @@
 import './list.css'
+import axios from 'axios';
+import React, { useState } from 'react';
 
-function List(){
-    return(
+function List() {
+    
+    const [employees, setEmployees] = useState([]);
+
+    React.useEffect(()=>{
+        axios.get('https://gorest.co.in/public/v2/users')
+        .then(function (res) {
+            console.log(res.data);
+            setEmployees(res.data);
+        })    
+    },[]);
+
+    return (
         <div>
             <table>
                 <tr>
@@ -11,41 +24,15 @@ function List(){
                     <th>Gender</th>
                     <th>Status</th>
                 </tr>
-                <tr>
-                    <td>N:001 </td>
-                    <td>Rangabashyam </td>
-                    <td> ranga@gmail.com</td>
-                    <td>Male </td>
-                    <td>Active </td>
-                </tr>
-                <tr>
-                    <td>N:002</td>
-                    <td>Hari </td>
-                    <td>hari@gmail.com </td>
-                    <td> Male</td>
-                    <td> Active</td>
-                </tr>
-                <tr>
-                    <td>N:003</td>
-                    <td>Priya </td>
-                    <td>priya@gmail.com </td>
-                    <td>Female </td>
-                    <td>Inactive </td>
-                </tr>
-                <tr>
-                    <td>N:003</td>
-                    <td>Shrinithi </td>
-                    <td>shri@gmail.com </td>
-                    <td>Female </td>
-                    <td>Inactive </td>
-                </tr>
-                <tr>
-                    <td>N:005</td>
-                    <td>Kalai </td>
-                    <td>kalai@gmail.com </td>
-                    <td>Female</td>
-                    <td>Active</td>
-                </tr>
+                {employees.map((emp,i) => {
+                    return <tr key={i}>
+                        <td>{emp.id}</td>
+                        <td>{emp.name}</td>
+                        <td>{emp.email}</td>
+                        <td>{emp.gender}</td>
+                        <td>{emp.status}</td>
+                    </tr>
+                })}
             </table>
         </div>
     )
