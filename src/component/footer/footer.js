@@ -3,7 +3,7 @@ import './footer.css'
 function Footer() {
     return (
         <div className='footer'>
-            copyright rangabashyam@gmail.com
+            copyright rangabashyam22@gmail.com
         </div>
     )
 }
