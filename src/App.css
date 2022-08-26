@@ -1,6 +1,11 @@
 .app{
     max-width: 800px;
     margin: auto;
+    height:100%;
+}
+
+.content{
+    padding: 10px;
     border: 1px solid gray;
 }
 
